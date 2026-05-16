@@ -5,9 +5,9 @@
 
 define('SS_WORKFLOW', 143 << 8);
 
-class hooks_fa_workflow extends hooks {
-    var $module_name = 'fa_workflow';
-    var $version = '1.0.0';
+class hooks_ksf_FA_Workflow extends hooks {
+    var $module_name = 'ksf_FA_Workflow';
+    var $version = '2.4.0';
 
     function install_options($app) {
         global $path_to_root;
@@ -31,6 +31,13 @@ class hooks_fa_workflow extends hooks {
         $security_areas['SA_WORKFLOWVIEW'] = array(SS_WORKFLOW | 1, _("View Workflows"));
         $security_areas['SA_WORKFLOWMANAGE'] = array(SS_WORKFLOW | 2, _("Manage Workflows"));
         return array($security_areas, $security_sections);
+    }
+
+    function install_extension($check_only=true) {
+        return true;
+    }
+
+    function install_tabs($app) {
     }
 
     function activate_extension($company, $check_only=true) {
