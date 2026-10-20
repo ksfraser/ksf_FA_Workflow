@@ -400,7 +400,7 @@ The workflow module provides:
 
 - [ ] run_workflows executes matching triggers
 - [ ] Actions execute when trigger fires
-- [ ] Execution logged to fa_wf_log
+- [ ] Execution logged to ksf_workflow_log
 
 ### AC-WF-05: Integration
 

@@ -76,12 +76,12 @@ Access via the CRM menu after installation:
 
 | Table | Description |
 |-------|-------------|
-| `fa_wf_triggers` | Trigger definitions |
-| `fa_wf_actions` | Action configurations |
-| `fa_wf_workflows` | Workflow groupings |
-| `fa_wf_log` | Execution audit log |
+| `ksf_workflow_triggers` | Trigger definitions |
+| `ksf_workflow_actions` | Action configurations |
+| `ksf_workflow_workflows` | Workflow groupings |
+| `ksf_workflow_log` | Execution audit log |
 
-### fa_wf_triggers
+### ksf_workflow_triggers
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -95,7 +95,7 @@ Access via the CRM menu after installation:
 | `is_active` | TINYINT | Active flag |
 | `priority` | INT | Execution priority |
 
-### fa_wf_actions
+### ksf_workflow_actions
 
 | Field | Type | Description |
 |-------|------|-------------|

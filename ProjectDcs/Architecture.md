@@ -142,10 +142,10 @@ run_workflows(entity_type, entity, oldEntity, context)
 
 ## 3. Database Schema
 
-### 3.1 fa_wf_triggers
+### 3.1 ksf_workflow_triggers
 
 ```sql
-CREATE TABLE fa_wf_triggers (
+CREATE TABLE ksf_workflow_triggers (
     id INT(11) NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     entity_type VARCHAR(20) NOT NULL,
@@ -163,10 +163,10 @@ CREATE TABLE fa_wf_triggers (
 );
 ```
 
-### 3.2 fa_wf_actions
+### 3.2 ksf_workflow_actions
 
 ```sql
-CREATE TABLE fa_wf_actions (
+CREATE TABLE ksf_workflow_actions (
     id INT(11) NOT NULL AUTO_INCREMENT,
     trigger_id INT(11) NOT NULL,
     name VARCHAR(100) NOT NULL,
@@ -181,10 +181,10 @@ CREATE TABLE fa_wf_actions (
 );
 ```
 
-### 3.3 fa_wf_workflows
+### 3.3 ksf_workflow_workflows
 
 ```sql
-CREATE TABLE fa_wf_workflows (
+CREATE TABLE ksf_workflow_workflows (
     id INT(11) NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     description TEXT,
@@ -197,10 +197,10 @@ CREATE TABLE fa_wf_workflows (
 );
 ```
 
-### 3.4 fa_wf_log
+### 3.4 ksf_workflow_log
 
 ```sql
-CREATE TABLE fa_wf_log (
+CREATE TABLE ksf_workflow_log (
     id INT(11) NOT NULL AUTO_INCREMENT,
     workflow_id INT(11) DEFAULT NULL,
     trigger_id INT(11) DEFAULT NULL,
@@ -367,7 +367,7 @@ crm_dispatch_event('workflow.after_execute', $results);
 
 ### 8.3 Logging
 
-- All errors are logged to fa_wf_log with status='error'
+- All errors are logged to ksf_workflow_log with status='error'
 - Error messages are stored for debugging
 
 ---

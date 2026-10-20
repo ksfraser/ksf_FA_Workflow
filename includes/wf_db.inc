@@ -5,7 +5,7 @@
 
 function add_trigger($trigger_data)
 {
-    $sql = "INSERT INTO " . TB_PREF . "fa_wf_triggers
+    $sql = "INSERT INTO " . TB_PREF . "ksf_workflow_triggers
         (name, entity_type, field_name, operator, field_value, trigger_type, is_active, priority)
     VALUES (" . db_escape($trigger_data['name']) . ",
             " . db_escape($trigger_data['entity_type']) . ",
@@ -22,14 +22,14 @@ function add_trigger($trigger_data)
 
 function get_trigger($trigger_id)
 {
-    $sql = "SELECT * FROM " . TB_PREF . "fa_wf_triggers WHERE id = " . db_escape($trigger_id);
+    $sql = "SELECT * FROM " . TB_PREF . "ksf_workflow_triggers WHERE id = " . db_escape($trigger_id);
     $result = db_query($sql, "Could not get trigger");
     return db_fetch_assoc($result);
 }
 
 function get_triggers($entity_type = null, $active_only = true)
 {
-    $sql = "SELECT * FROM " . TB_PREF . "fa_wf_triggers";
+    $sql = "SELECT * FROM " . TB_PREF . "ksf_workflow_triggers";
     $conds = [];
     
     if ($entity_type) {
@@ -55,7 +55,7 @@ function get_triggers($entity_type = null, $active_only = true)
 
 function update_trigger($trigger_id, $trigger_data)
 {
-    $sql = "UPDATE " . TB_PREF . "fa_wf_triggers SET
+    $sql = "UPDATE " . TB_PREF . "ksf_workflow_triggers SET
         name = " . db_escape($trigger_data['name']) . ",
         entity_type = " . db_escape($trigger_data['entity_type']) . ",
         field_name = " . db_escape($trigger_data['field_name']) . ",
@@ -71,10 +71,10 @@ function update_trigger($trigger_id, $trigger_data)
 
 function delete_trigger($trigger_id)
 {
-    $sql = "DELETE FROM " . TB_PREF . "fa_wf_triggers WHERE id = " . db_escape($trigger_id);
+    $sql = "DELETE FROM " . TB_PREF . "ksf_workflow_triggers WHERE id = " . db_escape($trigger_id);
     db_query($sql, "Could not delete trigger");
     
-    $sql = "DELETE FROM " . TB_PREF . "fa_wf_actions WHERE trigger_id = " . db_escape($trigger_id);
+    $sql = "DELETE FROM " . TB_PREF . "ksf_workflow_actions WHERE trigger_id = " . db_escape($trigger_id);
     db_query($sql, "Could not delete trigger actions");
 }
 
@@ -84,7 +84,7 @@ function add_action($action_data)
         ? json_encode($action_data['action_config']) 
         : $action_data['action_config'];
     
-    $sql = "INSERT INTO " . TB_PREF . "fa_wf_actions
+    $sql = "INSERT INTO " . TB_PREF . "ksf_workflow_actions
         (trigger_id, name, action_type, action_config, action_order, is_active)
     VALUES (" . db_escape($action_data['trigger_id']) . ",
             " . db_escape($action_data['name']) . ",
@@ -99,7 +99,7 @@ function add_action($action_data)
 
 function get_actions($trigger_id)
 {
-    $sql = "SELECT * FROM " . TB_PREF . "fa_wf_actions
+    $sql = "SELECT * FROM " . TB_PREF . "ksf_workflow_actions
         WHERE trigger_id = " . db_escape($trigger_id) . "
         ORDER BY action_order";
 
@@ -120,7 +120,7 @@ function update_action($action_id, $action_data)
         ? json_encode($action_data['action_config']) 
         : $action_data['action_config'];
     
-    $sql = "UPDATE " . TB_PREF . "fa_wf_actions SET
+    $sql = "UPDATE " . TB_PREF . "ksf_workflow_actions SET
         name = " . db_escape($action_data['name']) . ",
         action_type = " . db_escape($action_data['action_type']) . ",
         action_config = " . db_escape($config) . ",
@@ -133,7 +133,7 @@ function update_action($action_id, $action_data)
 
 function delete_action($action_id)
 {
-    $sql = "DELETE FROM " . TB_PREF . "fa_wf_actions WHERE id = " . db_escape($action_id);
+    $sql = "DELETE FROM " . TB_PREF . "ksf_workflow_actions WHERE id = " . db_escape($action_id);
     db_query($sql, "Could not delete action");
 }
 
@@ -258,7 +258,7 @@ function run_workflows($entity_type, $entity, $oldEntity = null, $context = null
 
 function log_workflow_execution($workflow_id, $trigger_id, $action_id, $entity_type, $entity_id, $status, $error = null)
 {
-    $sql = "INSERT INTO " . TB_PREF . "fa_wf_log
+    $sql = "INSERT INTO " . TB_PREF . "ksf_workflow_log
         (workflow_id, trigger_id, action_id, entity_type, entity_id, status, error_message)
     VALUES (" . db_escape($workflow_id) . ",
             " . db_escape($trigger_id) . ",
